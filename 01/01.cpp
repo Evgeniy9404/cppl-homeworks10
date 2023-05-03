@@ -23,7 +23,7 @@ public:
     std::unique_ptr<tridiagonal_matrix> clone()
     {
         auto clone = std::make_unique<tridiagonal_matrix>(m_down, m_upper, m_middle);
-        std::cout << "\nclone";
+        std::cout << "\nfunction clone was called\n";
 
         return clone;
     };
