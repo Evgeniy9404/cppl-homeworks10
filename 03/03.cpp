@@ -2,9 +2,42 @@
 // Задача 3*. std::unique_ptr своими руками
 
 #include <iostream>
+#include <vector>
+#include <memory>
+
+#include "UniquePtr.h"
+
 
 int main()
 {
+    //std::vector<int> v1{ 1,2,3 };
+
+    //std::vector<int> v2 = v1;
+
+    int x = 111;
+    int y = 222;
+
+
+    //UniquePtr<int> int_ptr = new int(10);
+
+    //std::cout << "&int_ptr " << &int_ptr << '\n';
+
+
+    auto ptr1 = UniquePtr<int>(&x);
+
+    std::cout << "&x " << &x << '\n';
+
+    auto ptr2 = UniquePtr<int>(&y);
+    std::cout << "&y " << &y << '\n';
+
+    //ptr1 = ptr2;
+
+
+
+    //print(v1);
+    std::cout << std::endl;
+    //print(v2);
+
     std::cout << "Hello World!\n";
 }
 
