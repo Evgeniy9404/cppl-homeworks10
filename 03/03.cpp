@@ -22,5 +22,9 @@ int main()
     std::cout << "ptr1\t  " << ptr1.release() << '\n';
     std::cout << "ptr2\t  " << ptr2.release() << '\n';
 
+    UniquePtr<int> x;
+
+
+
     std::cout << "\n\nHello World!\n";
 };
