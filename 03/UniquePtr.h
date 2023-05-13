@@ -1,18 +1,6 @@
 #pragma once
 #include <iostream>
-
-template<class T>
-struct DefaultDelete
-{
-	void operator() (T* ptr) const
-	{
-		delete ptr;
-	}
-
-};
-
-
-
+#include <utility>
 
 template <class T>
 class UniquePtr
@@ -21,8 +9,12 @@ private:
 	T* ptr_ = nullptr;
 
 public:
+
+	//1.Конструктор по умолчанию
+	UniquePtr() { std::cout << "UniquePtr Default Constructor  " << this << '\n'; };
+
 	//1.Конструктор, принимающий сырой указатель.
-	UniquePtr(T* ptr) : ptr_(ptr) { std::cout << "UniquePtr " << this << '\n'; };
+	UniquePtr(T* ptr) : ptr_(ptr) { std::cout << "UniquePtr(T* ptr) " << this << '\n'; };
 
 	//2.Перегружен оператор* для получения объекта.
 	T& operator*() const
@@ -50,10 +42,12 @@ public:
 	}
 
 	//4.Метод release, который освобождает владение и возвращает сырой указатель.
-	T* release()
+	T* release() noexcept
 	{
+		//подсмотрел в memory.h
+		T* _Tmp = ptr_;
 		ptr_ = nullptr;
-		return ptr_;
+		return _Tmp;
 	}
 
 	//5.Деструктор.
@@ -61,7 +55,6 @@ public:
 	{
 		std::cout << "~UniquePtr " << this << '\n';
 		delete ptr_;
-		std::cout << "~UniquePtr " << this << '\n';
 	};
 };
 
